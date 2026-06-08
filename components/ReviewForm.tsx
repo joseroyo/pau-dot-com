@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useState } from "react";
 import AlbumSearch from "./AlbumSearch";
@@ -23,7 +23,8 @@ type ReviewFormProps = {
 };
 
 export default function ReviewForm({ onAddReview }: ReviewFormProps) {
-  const [selectedAlbum, setSelectedAlbum] = useState<Album | null>(null);  const [date, setDate] = useState("");
+  const [selectedAlbum, setSelectedAlbum] = useState<Album | null>(null);  
+  const [date, setDate] = useState("");
   const [rating, setRating] = useState(5);
   const [review, setReview] = useState("");
 
