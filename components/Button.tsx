@@ -3,6 +3,7 @@ type ButtonProps = {
   onClick?: () => void;
   variant?: "primary" | "secondary";
   type?: "button" | "submit" | "reset";
+  className?: string;
 };
 
 export default function Button({
@@ -10,6 +11,7 @@ export default function Button({
   onClick,
   variant = "primary",
   type = "button",
+  className = "",
 }: ButtonProps) {
   const base = "px-4 py-2 rounded-lg font-medium transition-colors cursor-pointer";
   const variants = {
@@ -18,7 +20,7 @@ export default function Button({
   };
 
   return (
-    <button type={type} onClick={onClick} className={`${base} ${variants[variant]}`}>
+    <button type={type} onClick={onClick} className={`${base} ${variants[variant]} ${className}`}>
       {children}
     </button>
   );
