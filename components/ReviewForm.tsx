@@ -3,6 +3,7 @@
 import { useState } from "react";
 import AlbumSearch from "./AlbumSearch";
 import Button from "./Button";
+import StarRating from "./StarRating";
 
 
 type Album = {
@@ -52,8 +53,8 @@ export default function ReviewForm({ onAddReview }: ReviewFormProps) {
   }
 
   return (
-    <form className="flex flex-col justify-center w-[50%] p-5 border-2" onSubmit={handleSubmit}>
-      <h2>Add a Review</h2>
+    <form className="flex flex-col justify-center w-[50%] p-5 border-2 bg-white" onSubmit={handleSubmit}>
+      <h2 className="mb-4">Add a Review</h2>
 
       <section className="flex gap-5">
         {selectedAlbum ? (
@@ -68,22 +69,15 @@ export default function ReviewForm({ onAddReview }: ReviewFormProps) {
           <AlbumSearch onSelect={setSelectedAlbum} />
         )}
 
-        <section className="flex flex-col w-[40%]">
+        <section className="flex flex-col w-[50%]">
           <input
               type="date"
               value={date}
               onChange={(e) => setDate(e.target.value)}
             />
-          <label>
-            Rating (1-5):
-            <input
-              type="number"
-              min="1"
-              max="5"
-              value={rating}
-              onChange={(e) => setRating(Number(e.target.value))}
-            />
-          </label>
+          <div>
+            <StarRating value={rating} onChange={setRating} />
+          </div>
           <textarea
               value={review}
               onChange={(e) => setReview(e.target.value)}
@@ -91,7 +85,7 @@ export default function ReviewForm({ onAddReview }: ReviewFormProps) {
               rows={4}
               className="border-1"
             />
-          <Button type="submit">Save Review</Button>
+          <Button type="submit" className="mt-3">Save Review</Button>
         </section>
       </section>
     </form>

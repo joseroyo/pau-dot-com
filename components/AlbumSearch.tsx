@@ -28,7 +28,7 @@ export default function AlbumSearch({ onSelect }: AlbumSearchProps) {
       setIsLoading(true);
       try {
         const response = await fetch(
-          `https://itunes.apple.com/search?term=${encodeURIComponent(query)}&entity=album&limit=3`
+          `https://itunes.apple.com/search?term=${encodeURIComponent(query)}&entity=album&limit=4`
         );
         const data = await response.json();
         setResults(data.results);
@@ -44,7 +44,7 @@ export default function AlbumSearch({ onSelect }: AlbumSearchProps) {
   }, [query]);
 
   return (
-    <div className="w-[60%]">
+    <div className="w-[50%]">
       <input
         type="text"
         value={query}
@@ -61,14 +61,18 @@ export default function AlbumSearch({ onSelect }: AlbumSearchProps) {
             <li key={album.collectionId}>
               <button
                 type="button"
+                className="flex items-center cursor-pointer border-1 border-b-0 w-[100%] gap-2 first:border-t-0 last:border-b-1"
                 onClick={() => {
                   onSelect(album);
                   setQuery("");
                   setResults([]);
                 }}
               >
-                <img src={album.artworkUrl100} alt="" width={40} height={40} />
-                <span>{album.collectionName} — {album.artistName}</span>
+                <img src={album.artworkUrl100} alt="" width={45} height={45} />
+                <span className="flex flex-col items-start">
+                  <span>{album.collectionName}</span>
+                  <span>{album.artistName}</span>
+                </span>
               </button>
             </li>
           ))}

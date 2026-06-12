@@ -1,4 +1,5 @@
 import Button from "./Button";
+import { getItunesArtwork } from "@/lib/itunes";
 
 type ReviewCardProps = {
   id: number,
@@ -21,18 +22,21 @@ export default function ReviewCard({ id, album, artist, date, rating, review, co
   }
 
   return (
-    <article className="border-2 flex mb-4">
-      <img src={coverUrl} alt={`${album} cover`} width={200} height={200} />
-      <div>
+    <article className="border-2 flex mb-4 gap-4 relative bg-white">
+      <img src={getItunesArtwork(coverUrl, 600)} alt={`${album} cover`} width={200} height={200} />
+      <div className="py-4">
         <h3>{album}</h3>
         <p>{artist}</p>
         <p>Listened on: {date}</p>
-        <p>Rating: {rating}</p>
+        <p>
+          {"★".repeat(rating)}
+          <span className="text-gray-300">{"★".repeat(5 - rating)}</span>
+        </p>
         <p>{review}</p>
-        {onDelete && (
-          <Button type="button" variant="secondary" onClick={handleDelete}>Delete</Button>
-        )}
       </div>
+      {onDelete && (
+        <Button type="button" variant="secondary" className="absolute right-0 border-0" onClick={handleDelete}>x</Button>
+      )}
     </article>
   );
 }
