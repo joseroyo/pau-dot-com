@@ -103,7 +103,7 @@ export default function Music() {
 
   return (
     <main className="px-5 container mx-auto flex flex-col items-center">
-      <h1 className="text-center mb-3">Music Reviews</h1>
+      <h1>Music reviews</h1>
       {!isAuthLoading && user && (
         <Window title="Add a Review" className="w-[50%]">
           <ReviewForm onAddReview={addReview} />
