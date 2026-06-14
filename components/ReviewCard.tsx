@@ -22,9 +22,9 @@ export default function ReviewCard({ id, album, artist, date, rating, review, co
   }
 
   return (
-    <article className="border-2 flex mb-4 gap-4 relative bg-white">
+    <article className="flex gap-4 relative">
       <img src={getItunesArtwork(coverUrl, 600)} alt={`${album} cover`} width={200} height={200} />
-      <div className="py-4">
+      <div>
         <h3>{album}</h3>
         <p>{artist}</p>
         <p>Listened on: {date}</p>
@@ -35,7 +35,7 @@ export default function ReviewCard({ id, album, artist, date, rating, review, co
         <p>{review}</p>
       </div>
       {onDelete && (
-        <button type="button"className="absolute right-0 border-0 px-4 py-2 cursor-pointer" onClick={handleDelete}>x</button>
+        <button type="button"className="absolute right-[-23px] top-[-59px] border-0 px-4 py-2 cursor-pointer" onClick={handleDelete}>x</button>
       )}
     </article>
   );
