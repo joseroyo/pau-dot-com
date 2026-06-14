@@ -109,24 +109,25 @@ export default function Music() {
           <ReviewForm onAddReview={addReview} />
         </Window>
       )}
-      <section className="flex flex-col container my-7">
+      <section className="flex flex-wrap justify-between container mt-8">
         {isLoading ? (
           <p>Loading reviews...</p>
         ) : reviews.length === 0 ? (
           <p>No reviews yet. Add one above!</p>
         ) : (
           reviews.map((r, index) => (
-            <ReviewCard
-              key={index}
-              id={r.id}
-              album={r.album}
-              artist={r.artist}
-              date={r.date}
-              rating={r.rating}
-              review={r.review}
-              coverUrl={r.coverUrl}
-              onDelete={user ? deleteReview : undefined}
-            />
+            <Window className="mb-5 w-[49%]" key={index}>
+              <ReviewCard
+                id={r.id}
+                album={r.album}
+                artist={r.artist}
+                date={r.date}
+                rating={r.rating}
+                review={r.review}
+                coverUrl={r.coverUrl}
+                onDelete={user ? deleteReview : undefined}
+              />
+            </Window>
           ))
         )}
       </section>
