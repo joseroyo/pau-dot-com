@@ -1,5 +1,17 @@
+import Window from "@/components/Window";
+
 export default function Home() {
   return (
-    <h1>Home</h1>
+    <Window title="Work in progress" className="w-[50%] self-center mt-20">
+      <h2>Hello!</h2>
+      <p>Welcome to my new webpage!!!</p>
+      <p>It's still a work in progress, but soon you'll be able to see:</p>
+      <ol>
+        <li><span>- My professional and personal projects</span></li>
+        <li><span>- My resume</span></li>
+        <li><span>- My music reviews (Operational!)</span></li>
+        <li><span>- My movie and TV show reviews</span></li>
+      </ol>
+    </Window>
   );
 }
