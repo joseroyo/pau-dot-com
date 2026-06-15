@@ -15,16 +15,15 @@ export default function Navigation() {
   }
 
   return (
-    <nav className="px-5 py-2 mb-5 border-b-2 flex justify-between bg-white">
-      <Link href="/">Home</Link>
-      <Link href="/music">Music</Link>
-      
+    <nav className="px-5 py-2 mb-5 flex justify-between border-b-5 border-t-5 border-window-border-color bg-window-dotted bg-size-[5px_5px]">
+      <Link href="/" className="font-bold text-[16px] px-[12px] pb-[2px] bg-window-bg border-1 rounded-[2px]">Home</Link>
+      <Link href="/music" className="font-bold text-[16px] px-[12px] pb-[2px] bg-window-bg border-1 rounded-[2px]">Music</Link>
       {isAuthLoading ? (
         <span>...</span>
       ) : user ? (
-        <button type="button" onClick={handleLogout} className="cursor-pointer">Log out</button>
+        <button type="button" onClick={handleLogout} className="font-bold text-[16px] px-[12px] pb-[2px] bg-window-bg border-1 rounded-[2px] cursor-pointer">Log out</button>
       ) : (
-        <Link href="/login">Log in</Link>
+        <Link href="/login" className="font-bold text-[16px] px-[12px] pb-[2px] bg-window-bg border-1 rounded-[2px]">Log in</Link>
       )}
     </nav>
   );

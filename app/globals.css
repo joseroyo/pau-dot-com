@@ -41,7 +41,6 @@ body {
 
 .bg-window-dotted {
   background-image: radial-gradient(circle, var(--pink-strong) 1px, transparent 1.5px);
-  background-size: 4px 4px;
   background-color: var(--pink-light);
 }
 
@@ -49,6 +48,7 @@ h1 {
   font-size: 40px;
   font-weight: bold;
   margin-bottom: 20px;
+  text-shadow: 3px 3px 3px var(--pink-light);
   text-transform: uppercase;
 }
 
