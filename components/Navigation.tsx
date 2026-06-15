@@ -22,7 +22,7 @@ export default function Navigation() {
       {isAuthLoading ? (
         <span>...</span>
       ) : user ? (
-        <button type="button" onClick={handleLogout}>Log out</button>
+        <button type="button" onClick={handleLogout} className="cursor-pointer">Log out</button>
       ) : (
         <Link href="/login">Log in</Link>
       )}
