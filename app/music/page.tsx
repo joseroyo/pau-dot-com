@@ -5,6 +5,7 @@ import { supabase } from "@/lib/supabase";
 import ReviewCard from "@/components/ReviewCard";
 import ReviewForm from "@/components/ReviewForm";
 import { useAuth } from "@/components/AuthProvider";
+import Window from "@/components/Window";
 
 type Review = {
   id: number;
@@ -101,28 +102,35 @@ export default function Music() {
   }
 
   return (
-    <main>
-      <h1>Music Reviews</h1>
-      {!isAuthLoading && user && <ReviewForm onAddReview={addReview} />}
-      {isLoading ? (
-        <p>Loading reviews...</p>
-      ) : reviews.length === 0 ? (
-        <p>No reviews yet. Add one above!</p>
-      ) : (
-        reviews.map((r, index) => (
-          <ReviewCard
-            key={index}
-            id={r.id}
-            album={r.album}
-            artist={r.artist}
-            date={r.date}
-            rating={r.rating}
-            review={r.review}
-            coverUrl={r.coverUrl}
-            onDelete={user ? deleteReview : undefined}
-          />
-        ))
+    <main className="px-5 container mx-auto flex flex-col items-center">
+      <h1>Music reviews</h1>
+      {!isAuthLoading && user && (
+        <Window title="Add a Review" className="w-[50%]">
+          <ReviewForm onAddReview={addReview} />
+        </Window>
       )}
+      <section className="flex flex-wrap justify-between container mt-8">
+        {isLoading ? (
+          <p>Loading reviews...</p>
+        ) : reviews.length === 0 ? (
+          <p>No reviews yet. Add one above!</p>
+        ) : (
+          reviews.map((r, index) => (
+            <Window className="mb-5 w-[49%]" key={index}>
+              <ReviewCard
+                id={r.id}
+                album={r.album}
+                artist={r.artist}
+                date={r.date}
+                rating={r.rating}
+                review={r.review}
+                coverUrl={r.coverUrl}
+                onDelete={user ? deleteReview : undefined}
+              />
+            </Window>
+          ))
+        )}
+      </section>
     </main>
   );
 }

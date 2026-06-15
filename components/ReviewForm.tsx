@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import AlbumSearch from "./AlbumSearch";
+import Button from "./Button";
+import StarRating from "./StarRating";
 
 
 type Album = {
@@ -51,52 +53,40 @@ export default function ReviewForm({ onAddReview }: ReviewFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Add a Review</h2>
+    <form className="flex flex-col justify-center" onSubmit={handleSubmit}>
+      <section className="flex gap-5">
+        {selectedAlbum ? (
+          <div>
+            <img src={selectedAlbum.artworkUrl100} alt="" width={60} height={60} />
+            <p>{selectedAlbum.collectionName} — {selectedAlbum.artistName}</p>
+            <Button type="button" onClick={() => setSelectedAlbum(null)} variant="secondary">
+              Change album
+            </Button>
+          </div>
+        ) : (
+          <AlbumSearch onSelect={setSelectedAlbum} />
+        )}
 
-      {selectedAlbum ? (
-        <div>
-          <img src={selectedAlbum.artworkUrl100} alt="" width={60} height={60} />
-          <p>{selectedAlbum.collectionName} — {selectedAlbum.artistName}</p>
-          <button type="button" onClick={() => setSelectedAlbum(null)}>
-            Change album
-          </button>
-        </div>
-      ) : (
-        <AlbumSearch onSelect={setSelectedAlbum} />
-      )}
-
-      <label>
-        Date listened:
-        <input
-          type="date"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-        />
-      </label>
-
-      <label>
-        Rating (1-5):
-        <input
-          type="number"
-          min="1"
-          max="5"
-          value={rating}
-          onChange={(e) => setRating(Number(e.target.value))}
-        />
-      </label>
-
-      <label>
-        Review:
-        <textarea
-          value={review}
-          onChange={(e) => setReview(e.target.value)}
-          placeholder="Write your review..."
-          rows={4}
-        />
-      </label>
-
-      <button type="submit">Save Review</button>
+        <section className="flex flex-col w-[50%]">
+          <input
+              type="date"
+              value={date}
+              className="focus:outline-0"
+              onChange={(e) => setDate(e.target.value)}
+            />
+          <div>
+            <StarRating value={rating} onChange={setRating} />
+          </div>
+          <textarea
+              value={review}
+              onChange={(e) => setReview(e.target.value)}
+              placeholder="Write your review..."
+              rows={4}
+              className="pr-2"
+            />
+          <Button type="submit" className="mt-3">Save Review</Button>
+        </section>
+      </section>
     </form>
   );
 }
