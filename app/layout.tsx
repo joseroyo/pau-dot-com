@@ -5,8 +5,8 @@ import { AuthProvider } from "@/components/AuthProvider";
 import localFont from "next/font/local";
 
 export const metadata: Metadata = {
-  title: "Pau Landing",
-  description: "Pau Landing",
+  title: "Paulina's Cool Page",
+  description: "Pau's page",
 };
 
 const undefinedFont = localFont({
