@@ -37,6 +37,7 @@ body {
   background-image: url("/images/windows-xp-bliss.jpg");
   color: var(--pink-strong);
   font-family: var(--font-undefined), monospace;
+  cursor: url("/images/mouse-pointer.png") 0 0, auto;
 }
 
 .bg-window-dotted {
@@ -81,4 +82,8 @@ textarea {
 
 .animate-sparkle {
   animation: sparkle-fall 1s ease-out forwards;
+}
+
+a, button, [role="button"] {
+  cursor: url("/images/mouse-pointer.png") 0 0, pointer;
 }
