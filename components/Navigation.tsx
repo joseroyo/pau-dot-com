@@ -17,7 +17,11 @@ export default function Navigation() {
   return (
     <nav className="px-5 py-2 mb-5 flex justify-between border-b-5 border-t-5 border-window-border-color bg-window-dotted bg-size-[5px_5px]">
       <Link href="/" className="font-bold text-[16px] px-[12px] pb-[2px] bg-window-bg border-1 rounded-[2px]">Home</Link>
-      <Link href="/music" className="font-bold text-[16px] px-[12px] pb-[2px] bg-window-bg border-1 rounded-[2px]">Music</Link>
+      <article className="flex gap-5 items-center">
+        <Link href="/music" className="font-bold text-[16px] px-[12px] pb-[2px] bg-window-bg border-1 rounded-[2px]">Music</Link>
+        <Link href="/movies" className="font-bold text-[16px] px-[12px] pb-[2px] bg-window-bg border-1 rounded-[2px]">Movies</Link>
+        <Link href="/tv-shows" className="font-bold text-[16px] px-[12px] pb-[2px] bg-window-bg border-1 rounded-[2px]">TV Shows</Link>
+      </article>
       {isAuthLoading ? (
         <span>...</span>
       ) : user ? (

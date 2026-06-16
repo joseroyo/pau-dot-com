@@ -6,19 +6,19 @@ import ReviewCard from "@/components/ReviewCard";
 import ReviewForm, { ReviewSubmission } from "@/components/ReviewForm";
 import { useAuth } from "@/components/AuthProvider";
 import Window from "@/components/Window";
-import { searchItunes } from "@/lib/media/searchItunes";
+import { searchSeriesTmdb } from "@/lib/media/searchTmdb";
 
 type Review = {
   id: number;
-  album: string;
-  artist: string;
+  title: string;
+  releaseDate?: string;
   date: string;
   rating: number;
   review: string;
   coverUrl: string;
 };
 
-export default function Music() {
+export default function Movies() {
   const [reviews, setReviews] = useState<Review[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const { user, isAuthLoading } = useAuth();
@@ -28,7 +28,7 @@ export default function Music() {
       const { data, error } = await supabase
         .from("reviews")
         .select("*")
-        .eq("media_type", "music")
+        .eq("media_type", "show")
         .order("created_at", { ascending: false });
 
       if (error) {
@@ -39,8 +39,8 @@ export default function Music() {
 
       const mapped: Review[] = data.map((row) => ({
         id: row.id,
-        album: row.title,
-        artist: row.artist,
+        title: row.title,
+        releaseDate: row.artist,
         coverUrl: row.image_url,
         date: row.date_logged,
         rating: row.rating,
@@ -59,12 +59,12 @@ export default function Music() {
       .from("reviews")
       .insert({
         title: data.item.title,
-        artist: data.item.artist,      
+        artist: data.item.artist,
         image_url: data.item.imageUrl,
         date_logged: data.date,
         rating: data.rating,
         review_text: data.review,
-        media_type: "music",
+        media_type: "show",
       })
       .select()
       .single();
@@ -76,8 +76,8 @@ export default function Music() {
 
     const newReviewCard: Review = {
       id: inserted.id,
-      album: inserted.title,
-      artist: inserted.artist,
+      title: inserted.title,
+      releaseDate: inserted.artist,
       coverUrl: inserted.image_url,
       date: inserted.date_logged,
       rating: inserted.rating,
@@ -104,12 +104,12 @@ export default function Music() {
 
   return (
     <main className="px-5 container mx-auto flex flex-col items-center">
-      <h1>Music reviews</h1>
+      <h1>TV reviews</h1>
       {!isAuthLoading && user && (
         <Window title="Add a Review" className="w-[50%]">
           <ReviewForm
-            search={searchItunes}
-            searchPlaceholder="Search for an album..."
+            search={searchSeriesTmdb}
+            searchPlaceholder="Search for a show..."
             onAddReview={addReview}
           />
         </Window>
@@ -124,8 +124,8 @@ export default function Music() {
             <Window className="mb-5 w-[49%]" key={r.id}>
               <ReviewCard
                 id={r.id}
-                title={r.album}
-                artist={r.artist}
+                title={r.title}
+                artist={r.releaseDate}
                 date={r.date}
                 rating={r.rating}
                 review={r.review}
