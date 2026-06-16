@@ -3,6 +3,7 @@ import "./globals.css";
 import Navigation from "@/components/Navigation";
 import { AuthProvider } from "@/components/AuthProvider";
 import localFont from "next/font/local";
+import MouseSpark from "@/components/MouseSpark";
 
 export const metadata: Metadata = {
   title: "Paulina's Cool Page",
@@ -27,6 +28,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <AuthProvider>
+          <MouseSpark />
           <Navigation />
           {children}
         </AuthProvider>
