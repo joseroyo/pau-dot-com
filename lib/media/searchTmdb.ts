@@ -15,7 +15,7 @@ export async function searchMoviesTmdb(query: string): Promise<MediaSearchResult
   );
   const data = await response.json();
 
-  return (data.results || []).slice(0, 8).map((item: any) => ({
+  return (data.results || []).slice(0, 4).map((item: any) => ({
     id: String(item.id),
     title: item.title,
     artist: item.release_date ? item.release_date.slice(0, 4) : undefined,
@@ -31,7 +31,7 @@ export async function searchSeriesTmdb(query: string): Promise<MediaSearchResult
   );
   const data = await response.json();
 
-  return (data.results || []).slice(0, 8).map((item: any) => ({
+  return (data.results || []).slice(0, 4).map((item: any) => ({
     id: String(item.id),
     title: item.name,
     artist: item.first_air_date ? item.first_air_date.slice(0, 4) : undefined,

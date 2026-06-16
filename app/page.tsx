@@ -9,8 +9,7 @@ export default function Home() {
       <ol>
         <li><span>- My professional and personal projects</span></li>
         <li><span>- My resume</span></li>
-        <li><span>- My music reviews (Operational!)</span></li>
-        <li><span>- My movie and TV show reviews</span></li>
+        <li><span>- My music, movie and TV show reviews (Operational!)</span></li>
       </ol>
     </Window>
   );

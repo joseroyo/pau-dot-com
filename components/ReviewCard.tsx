@@ -26,7 +26,7 @@ export default function ReviewCard({ id, title, artist, date, rating, review, im
       <div>
         <h3>{title}</h3>
         <p>{artist}</p>
-        <p>Listened on: {date}</p>
+        <p>Date logged: {date}</p>
         <p>
           {"★".repeat(rating)}
           <span className="text-gray-300">{"★".repeat(5 - rating)}</span>
