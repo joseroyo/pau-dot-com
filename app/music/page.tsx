@@ -38,10 +38,10 @@ export default function Music() {
 
       const mapped: Review[] = data.map((row) => ({
         id: row.id,
-        album: row.album,
+        album: row.title,
         artist: row.artist,
-        coverUrl: row.cover_url,
-        date: row.listened_on,
+        coverUrl: row.image_url,
+        date: row.date_logged,
         rating: row.rating,
         review: row.review_text,
       }));
@@ -57,12 +57,13 @@ export default function Music() {
     const { data, error } = await supabase
       .from("reviews")
       .insert({
-        album: newReview.album,
+        title: newReview.album,
         artist: newReview.artist,
-        cover_url: newReview.coverUrl,
-        listened_on: newReview.date,
+        image_url: newReview.coverUrl,
+        date_logged: newReview.date,
         rating: newReview.rating,
         review_text: newReview.review,
+        media_type: 'music',
       })
       .select()
       .single();
