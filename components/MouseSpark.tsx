@@ -22,7 +22,7 @@ export default function MouseSparkles() {
 
     function handleMouseMove(e: MouseEvent) {
       const now = Date.now();
-      if (now - lastSpawn < 10) return;
+      if (now - lastSpawn < 5) return;
       lastSpawn = now;
 
       const count = 3;
