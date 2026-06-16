@@ -67,3 +67,18 @@ textarea {
     outline: none;
   }
 }
+
+@keyframes sparkle-fall {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, calc(-50% + 50px)) scale(0.3) rotate(180deg);
+  }
+}
+
+.animate-sparkle {
+  animation: sparkle-fall 1s ease-out forwards;
+}
