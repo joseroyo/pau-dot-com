@@ -6,7 +6,7 @@ import localFont from "next/font/local";
 import MouseSpark from "@/components/MouseSpark";
 
 export const metadata: Metadata = {
-  title: "Paulina's Cool Page",
+  title: "Paul (ina)'s Page",
   description: "Pau's page",
 };
 
