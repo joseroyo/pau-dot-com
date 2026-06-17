@@ -102,6 +102,20 @@ export default function Movies() {
     setReviews(reviews.filter((r) => r.id !== id));
   }
 
+  async function updateReview(id: number, newText: string) {
+    const { error } = await supabase
+      .from("reviews")
+      .update({ review_text: newText })
+      .eq("id", id);
+
+    if (error) {
+      console.error("Failed to update:", error.message, error);
+      return;
+    }
+
+    setReviews(reviews.map((r) => (r.id === id ? { ...r, review: newText } : r)));
+  }
+
   return (
     <main className="px-5 container mx-auto flex flex-col items-center">
       <h1>Movie reviews</h1>
@@ -131,6 +145,7 @@ export default function Movies() {
                 review={r.review}
                 imageUrl={r.coverUrl}
                 onDelete={user ? deleteReview : undefined}
+                onUpdate={user ? updateReview : undefined}
               />
             </Window>
           ))
