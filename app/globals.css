@@ -85,5 +85,5 @@ textarea {
 }
 
 a, button, [role="button"] {
-  cursor: url("/images/mouse-pointer.png") 0 0, pointer;
+  cursor: url("/images/mouse-pointer-hover.png") 0 0, pointer;
 }
