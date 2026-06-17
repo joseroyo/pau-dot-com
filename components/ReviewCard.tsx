@@ -22,14 +22,14 @@ export default function ReviewCard({ id, title, artist, date, rating, review, im
 
   return (
     <article className="flex gap-4 relative">
-      <img src={getItunesArtwork(imageUrl, 600)} alt={`${imageUrl} cover`} width={200} height={200} />
+      <img src={getItunesArtwork(imageUrl, 600)} alt={`${imageUrl} cover`} className="h-[100%]" width={200} height={200} />
       <div>
         <h3>{title}</h3>
         <p>{artist}</p>
         <p>Date logged: {date}</p>
-        <p>
+        <p className="text-[25px]">
           {"★".repeat(rating)}
-          <span className="text-gray-300">{"★".repeat(5 - rating)}</span>
+          <span className="text-lowlight">{"★".repeat(5 - rating)}</span>
         </p>
         <p>{review}</p>
       </div>
