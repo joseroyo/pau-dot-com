@@ -3,6 +3,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --pink-extra-strong: #fa009e;
   --pink-strong: #ff66c7;
   --pink-strong-hover: #ff8cd5;
   --pink-light: #ffd1e9;
@@ -35,7 +36,7 @@
 
 body {
   background-image: url("/images/windows-xp-bliss.jpg");
-  color: var(--pink-strong);
+  color: var(--pink-extra-strong);
   font-family: var(--font-undefined), monospace;
   cursor: url("/images/mouse-pointer.png") 0 0, auto;
 }
