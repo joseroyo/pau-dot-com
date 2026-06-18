@@ -87,10 +87,10 @@ export default function FriendRating() {
     setFriends(friends.filter((f) => f.id !== id));
   }
 
-  async function updateFriend(id: number, newText: string) {
+  async function updateFriend(id: number, newText: string, newRating: number) {
     const { error } = await supabase
       .from("friends")
-      .update({ review_text: newText })
+      .update({ review_text: newText, rating: newRating })
       .eq("id", id);
 
     if (error) {
@@ -98,7 +98,7 @@ export default function FriendRating() {
       return;
     }
 
-    setFriends(friends.map((f) => (f.id === id ? { ...f, review: newText } : f)));
+    setFriends(friends.map((f) => (f.id === id ? { ...f, review: newText, rating: newRating } : f)));
   }
 
   return (

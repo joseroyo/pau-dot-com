@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react";
+import StarRating from "./StarRating";
 
 type EventCardProps = {
   id: number;
@@ -10,12 +11,13 @@ type EventCardProps = {
   description: string;
   photoUrl: string;
   onDelete?: (id: number) => void;
-  onUpdate?: (id: number, newReview: string) => void;
+  onUpdate?: (id: number, newDescription: string, newRating: number) => void;
 };
 
 export default function EventCard({ id, lifeEvent, date, rating, description, photoUrl, onDelete, onUpdate }: EventCardProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [editedText, setEditedText] = useState(description);
+  const [editedRating, setEditedRating] = useState(rating);
   const [isExpanded, setIsExpanded] = useState(false);
   const isLongDesc = description.length > 280;
 
@@ -28,7 +30,7 @@ export default function EventCard({ id, lifeEvent, date, rating, description, ph
   }
 
   function handleSave() {
-    if (editedText === description) {
+    if ((editedText === description) && (editedRating === rating)) {
       setIsEditing(false);
       return;
     }
@@ -36,12 +38,13 @@ export default function EventCard({ id, lifeEvent, date, rating, description, ph
     const confirmed = confirm("Ready to save these changes?");
     if (!confirmed) return;
 
-    onUpdate?.(id, editedText);
+    onUpdate?.(id, editedText, editedRating);
     setIsEditing(false);
   }
 
   function handleCancel() {
     setEditedText(description);
+    setEditedRating(rating);
     setIsEditing(false);
   }
 
@@ -52,14 +55,20 @@ export default function EventCard({ id, lifeEvent, date, rating, description, ph
       )}
       <div className="w-[100%]">
         {onUpdate && (
-          <button type="button" onClick={() => setIsEditing(true)} className="absolute right-0 hover:underline">Edit Desc.</button>
+          <button type="button" onClick={() => setIsEditing(true)} className="absolute right-0 text-primary hover:underline">Edit Desc.</button>
         )}
         <h3 className="w-[75%]">{lifeEvent}</h3>
         <p>Date: {date}</p>
-        <p className="text-[25px]">
-          {"★".repeat(rating)}
-          <span className="text-lowlight">{"★".repeat(5 - rating)}</span>
-        </p>
+        {isEditing ? (
+          <div>
+            <StarRating value={editedRating} onChange={setEditedRating} />
+          </div>
+        ) : (
+          <p className="text-[25px]">
+            {"★".repeat(rating)}
+            <span className="text-lowlight">{"★".repeat(5 - rating)}</span>
+          </p>
+        )}
         {isEditing ? (
           <div className="flex flex-col mt-1">
             <textarea
