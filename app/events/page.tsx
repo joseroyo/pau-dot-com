@@ -91,10 +91,10 @@ export default function EventRating() {
     setLifeEvents(lifeEvents.filter((f) => f.id !== id));
   }
 
-  async function updateLifeEvent(id: number, newText: string) {
+  async function updateLifeEvent(id: number, newText: string, newRating: number) {
     const { error } = await supabase
       .from("life_events")
-      .update({ review_text: newText })
+      .update({ description: newText, rating: newRating })
       .eq("id", id);
 
     if (error) {
@@ -102,7 +102,7 @@ export default function EventRating() {
       return;
     }
 
-    setLifeEvents(lifeEvents.map((f) => (f.id === id ? { ...f, review: newText } : f)));
+    setLifeEvents(lifeEvents.map((f) => (f.id === id ? { ...f, description: newText, rating: newRating } : f)));
   }
 
   return (
@@ -111,7 +111,7 @@ export default function EventRating() {
 
       {!isAuthLoading && user && (
         <Window title="Add a Life Event" className="w-[50%]">
-          <EventForm onAddReview={addLifeEvent} />
+          <EventForm onAddDescription={addLifeEvent} />
         </Window>
       )}
 

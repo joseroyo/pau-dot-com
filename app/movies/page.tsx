@@ -102,10 +102,10 @@ export default function Movies() {
     setReviews(reviews.filter((r) => r.id !== id));
   }
 
-  async function updateReview(id: number, newText: string) {
+  async function updateReview(id: number, newText: string, newRating: number) {
     const { error } = await supabase
       .from("reviews")
-      .update({ review_text: newText })
+      .update({ review_text: newText, rating: newRating })
       .eq("id", id);
 
     if (error) {
@@ -113,7 +113,7 @@ export default function Movies() {
       return;
     }
 
-    setReviews(reviews.map((r) => (r.id === id ? { ...r, review: newText } : r)));
+    setReviews(reviews.map((r) => (r.id === id ? { ...r, review: newText, rating: newRating } : r)));
   }
 
   return (

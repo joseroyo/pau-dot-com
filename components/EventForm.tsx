@@ -14,10 +14,10 @@ export type EventSubmission = {
 };
 
 type EventFormProps = {
-  onAddReview: (data: EventSubmission) => void;
+  onAddDescription: (data: EventSubmission) => void;
 };
 
-export default function FriendForm({ onAddReview }: EventFormProps) {
+export default function FriendForm({ onAddDescription }: EventFormProps) {
   const [lifeEvent, setLifeEvent] = useState("");
   const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
   const [rating, setRating] = useState(0);
@@ -37,7 +37,7 @@ export default function FriendForm({ onAddReview }: EventFormProps) {
       return;
     }
 
-    onAddReview({ lifeEvent, date, rating, description, photoUrl });
+    onAddDescription({ lifeEvent, date, rating, description, photoUrl });
     setLifeEvent("");
     setDate(new Date().toISOString().slice(0, 10));
     setRating(0);
