@@ -6,13 +6,14 @@ type EventCardProps = {
   id: number;
   lifeEvent: string;
   date: string;
+  rating: number;
   description: string;
   photoUrl: string;
   onDelete?: (id: number) => void;
   onUpdate?: (id: number, newReview: string) => void;
 };
 
-export default function EventCard({ id, lifeEvent, date, description, photoUrl, onDelete, onUpdate }: EventCardProps) {
+export default function EventCard({ id, lifeEvent, date, rating, description, photoUrl, onDelete, onUpdate }: EventCardProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [editedText, setEditedText] = useState(description);
   const [isExpanded, setIsExpanded] = useState(false);
@@ -55,6 +56,10 @@ export default function EventCard({ id, lifeEvent, date, description, photoUrl, 
         )}
         <h3 className="w-[75%]">{lifeEvent}</h3>
         <p>Date: {date}</p>
+        <p className="text-[25px]">
+          {"★".repeat(rating)}
+          <span className="text-lowlight">{"★".repeat(5 - rating)}</span>
+        </p>
         {isEditing ? (
           <div className="flex flex-col mt-1">
             <textarea

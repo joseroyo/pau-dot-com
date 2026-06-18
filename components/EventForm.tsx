@@ -3,10 +3,12 @@
 import { useState } from "react";
 import Button from "./Button";
 import ImageUpload from "./ImageUpload";
+import StarRating from "./StarRating";
 
 export type EventSubmission = {
   lifeEvent: string;
   date: string;
+  rating: number;
   description: string;
   photoUrl: string;
 };
@@ -18,6 +20,7 @@ type EventFormProps = {
 export default function FriendForm({ onAddReview }: EventFormProps) {
   const [lifeEvent, setLifeEvent] = useState("");
   const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
+  const [rating, setRating] = useState(0);
   const [description, setDescription] = useState("");
   const [photoUrl, setPhotoUrl] = useState("");
 
@@ -29,9 +32,15 @@ export default function FriendForm({ onAddReview }: EventFormProps) {
       return;
     }
 
-    onAddReview({ lifeEvent, date, description, photoUrl });
+    if (rating === 0) {
+      alert("Please pick a rating.");
+      return;
+    }
+
+    onAddReview({ lifeEvent, date, rating, description, photoUrl });
     setLifeEvent("");
     setDate(new Date().toISOString().slice(0, 10));
+    setRating(0);
     setDescription("");
     setPhotoUrl("");
   }
@@ -54,6 +63,9 @@ export default function FriendForm({ onAddReview }: EventFormProps) {
               className="focus:outline-0"
               onChange={(e) => setDate(e.target.value)}
             />
+          <div>
+            <StarRating value={rating} onChange={setRating} />
+          </div>
           <textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}

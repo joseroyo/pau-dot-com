@@ -11,6 +11,7 @@ type lifeEventType = {
   id: number;
   lifeEvent: string;
   date: string;
+  rating: number;
   description: string;
   photoUrl: string;
 };
@@ -37,6 +38,7 @@ export default function EventRating() {
         id: row.id,
         lifeEvent: row.life_event,
         date: row.date_logged,
+        rating: row.rating,
         description: row.description,
         photoUrl: row.photo,
       }));
@@ -53,6 +55,7 @@ export default function EventRating() {
       .insert({
         life_event: data.lifeEvent,
         date_logged: data.date,
+        rating: data.rating,
         description: data.description,
         photo: data.photoUrl,
       })
@@ -68,6 +71,7 @@ export default function EventRating() {
       id: inserted.id,
       lifeEvent: inserted.life_event,
       date: inserted.date_logged,
+      rating: inserted.rating,
       description: inserted.description,
       photoUrl: inserted.photo,
     };
@@ -123,6 +127,7 @@ export default function EventRating() {
                 id={f.id}
                 lifeEvent={f.lifeEvent}
                 date={f.date}
+                rating={f.rating}
                 description={f.description}
                 photoUrl={f.photoUrl}
                 onDelete={user ? deleteLifeEvent : undefined}
