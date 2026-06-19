@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import StarRating from "./StarRating";
+import StarDisplay from "./StarDisplay";
 
 type EventCardProps = {
   id: number;
@@ -64,10 +65,7 @@ export default function EventCard({ id, lifeEvent, date, rating, description, ph
             <StarRating value={editedRating} onChange={setEditedRating} />
           </div>
         ) : (
-          <p className="text-[25px]">
-            {"★".repeat(rating)}
-            <span className="text-lowlight">{"★".repeat(5 - rating)}</span>
-          </p>
+          <StarDisplay value={rating} />
         )}
         {isEditing ? (
           <div className="flex flex-col mt-1">
