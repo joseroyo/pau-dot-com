@@ -26,10 +26,6 @@ export default function BackgroundMusic({ pageKey }: BackgroundMusicProps) {
         .maybeSingle();
 
       if (data?.audio_url) setAudioUrl(data.audio_url);
-
-      if (audioRef.current) {
-        audioRef.current.volume = 0.3;
-      }
     }
     loadAudio();
   }, [pageKey]);
@@ -127,6 +123,9 @@ export default function BackgroundMusic({ pageKey }: BackgroundMusicProps) {
             ref={audioRef}
             src={audioUrl}
             loop
+            onLoadedMetadata={() => {
+                if (audioRef.current) audioRef.current.volume = 0.3;
+            }}
             onEnded={() => setIsPlaying(false)}
           />
           <Button type="button" onClick={togglePlay} variant="secondary">
