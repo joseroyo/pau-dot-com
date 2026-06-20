@@ -27,7 +27,7 @@ export async function POST(request: Request) {
 
   const { data: subscribers, error: subError } = await supabase
     .from("subscribers")
-    .select("email");
+    .select("email, unsubscribe_token");
 
   if (subError || !subscribers || subscribers.length === 0) {
     return NextResponse.json({ success: true, sent: 0 });
@@ -39,8 +39,11 @@ export async function POST(request: Request) {
     subject: `New ${category}: ${title}`,
     html: `
       <h1>New ${category} posted!</h1>
-      <p>Check out the latest review of <strong>${title}</strong></p>
-      ${pageUrl ? `<p><a href="${pageUrl}">View it here</a></p>` : ""}
+      <p style="font-size: 16px;">Check out the latest review of <strong>${title}</strong></p>
+      ${pageUrl ? `<p style="font-size: 16px;"><a href="${pageUrl}">View it here!</a></p>` : ""}
+      <p style="font-size:12px; margin-top:50px;">
+        <a href="https://ireviewstuff.com/unsubscribe?token=${sub.unsubscribe_token}">Unsubscribe</a>
+      </p>
     `,
   }));
 
