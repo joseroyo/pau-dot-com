@@ -118,7 +118,7 @@ export default function Movies() {
   }
 
   return (
-    <main className="px-5 container mx-auto flex flex-col items-center">
+    <main className="px-5 mx-auto flex flex-col items-center w-[100%] 2xl:container">
       <BackgroundMusic pageKey="tv-shows" />
       <h1>TV reviews</h1>
       {!isAuthLoading && user && (
@@ -130,14 +130,14 @@ export default function Movies() {
           />
         </Window>
       )}
-      <section className="flex flex-wrap justify-between container mt-8">
+      <section className="flex flex-wrap justify-between mt-8 w-[100%] 2xl:container">
         {isLoading ? (
           <p>Loading reviews...</p>
         ) : reviews.length === 0 ? (
           <p>No reviews yet. Add one above!</p>
         ) : (
           reviews.map((r) => (
-            <Window className="mb-5 w-[49%]" key={r.id}>
+            <Window className="mb-5 w-[100%] md:w-[49%]" key={r.id}>
               <ReviewCard
                 id={r.id}
                 title={r.title}
