@@ -48,7 +48,7 @@ export default function BlogCard({ id, title, text, onDelete, onUpdate }: BlogCa
     <article className="flex gap-4 relative">
       <div className="w-[100%]">
         {onUpdate && (
-          <button type="button" onClick={() => setIsEditing(true)} className="absolute right-0 text-primary hover:underline">Edit Post</button>
+          <button type="button" onClick={() => setIsEditing(true)} className="absolute right-0 bottom-0 text-primary hover:underline">Edit Post</button>
         )}
         {isEditing ? (
           <input

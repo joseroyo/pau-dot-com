@@ -96,7 +96,7 @@ export default function AboutMe() {
 
   return (
     <main className="px-5 container mx-auto flex flex-col items-center">
-      <BackgroundMusic pageKey="about-,e" />
+      <BackgroundMusic pageKey="about-me" />
       <h1>About Me!</h1>
 
       {!isAuthLoading && user && (
@@ -112,7 +112,7 @@ export default function AboutMe() {
           <h2 className="mx-[auto] my-0">No posts yet.</h2>
         ) : (
           Blogs.map((f) => (
-            <Window className="mb-5 w-[49%]" key={f.id}>
+            <Window className="mb-5 w-[49%] h-fit" key={f.id} draggable>
               <BlogCard
                 id={f.id}
                 title={f.title}
