@@ -32,7 +32,7 @@ export default function Login() {
     }
 
     // Logged in successfully — send them to the music page
-    router.push("/music");
+    router.push("/");
   }
 
   return (
@@ -65,7 +65,6 @@ export default function Login() {
           </Button>
         </form>
       </Window>
-
     </main>
   );
 }
