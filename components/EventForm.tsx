@@ -4,6 +4,7 @@ import { useState } from "react";
 import Button from "./Button";
 import ImageUpload from "./ImageUpload";
 import StarRating from "./StarRating";
+import { todayLocal } from "@/lib/utils";
 
 export type EventSubmission = {
   lifeEvent: string;
@@ -19,7 +20,7 @@ type EventFormProps = {
 
 export default function FriendForm({ onAddDescription }: EventFormProps) {
   const [lifeEvent, setLifeEvent] = useState("");
-  const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
+  const [date, setDate] = useState(todayLocal());
   const [rating, setRating] = useState(0);
   const [description, setDescription] = useState("");
   const [photoUrl, setPhotoUrl] = useState("");
@@ -39,7 +40,7 @@ export default function FriendForm({ onAddDescription }: EventFormProps) {
 
     onAddDescription({ lifeEvent, date, rating, description, photoUrl });
     setLifeEvent("");
-    setDate(new Date().toISOString().slice(0, 10));
+    setDate(todayLocal());
     setRating(0);
     setDescription("");
     setPhotoUrl("");
