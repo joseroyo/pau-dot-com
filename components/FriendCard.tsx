@@ -54,8 +54,8 @@ export default function FriendCard({ id, name, rating, review, photoUrl, onDelet
         <img src={photoUrl} alt={`${name} photo`} className="w-[auto] h-[100px] absolute sm:w-[200px] sm:h-[100%] sm:relative md:w-[auto] md:h-[100px] md:absolute lg:w-[150px] lg:h-[100%] lg:relative xl:w-[200px]" width={200} height={200} />
       )}
       <div className="w-[100%]">
-        {onUpdate && (
-          <button type="button" onClick={() => setIsEditing(true)} className="absolute right-0 text-primary hover:underline">Edit review</button>
+        {onUpdate && !isEditing && (
+          <button type="button" onClick={() => setIsEditing(true)} className="absolute right-0 bottom-[-5px] text-primary hover:underline">Edit</button>
         )}
         <div className="pl-[140px] sm:pl-0 md:pl-[140px] lg:pl-0">
           <h3>{name}</h3>

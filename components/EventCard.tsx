@@ -55,8 +55,8 @@ export default function EventCard({ id, lifeEvent, date, rating, description, ph
         <img src={photoUrl} alt={`${lifeEvent} photo`} className="w-[auto] h-[100px] absolute sm:w-[200px] sm:h-[100%] sm:relative md:w-[auto] md:h-[100px] md:absolute lg:w-[150px] lg:h-[100%] lg:relative xl:w-[200px]" width={200} height={200} />
       )}
       <div className="w-[100%]">
-        {onUpdate && (
-          <button type="button" onClick={() => setIsEditing(true)} className="absolute right-0 text-primary hover:underline">Edit Desc.</button>
+        {onUpdate && !isEditing && (
+          <button type="button" onClick={() => setIsEditing(true)} className="absolute right-0 bottom-[-5px] text-primary hover:underline">Edit</button>
         )}
         <div className="pl-[130px] sm:pl-0 md:pl-[130px] lg:pl-0">
           <h3>{lifeEvent}</h3>
