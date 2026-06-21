@@ -137,7 +137,7 @@ export default function Movies() {
           />
         </Window>
       )}
-      <section className="flex flex-wrap justify-between mt-8 w-[100%] 2xl:container">
+      <section className="flex flex-wrap justify-between lg:mt-8 w-[100%] 2xl:container">
         {isLoading ? (
           <p>Loading reviews...</p>
         ) : reviews.length === 0 ? (

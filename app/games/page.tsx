@@ -137,7 +137,7 @@ export default function Games() {
           />
         </Window>
       )}
-      <section className="flex flex-wrap justify-between mt-8 w-[100%] 2xl:container">
+      <section className="flex flex-wrap justify-between lg:mt-8 w-[100%] 2xl:container">
         {isLoading ? (
           <p className="my-0 mx-[auto]">Loading reviews...</p>
         ) : reviews.length === 0 ? (

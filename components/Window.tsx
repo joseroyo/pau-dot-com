@@ -31,7 +31,7 @@ function WindowButton({ label, symbol, onClick }: WindowButtonProps) {
 }
 
 export default function Window({ title, children, onClose, className="", draggable = false }: WindowProps) {
-    const base = "border-3 border-window-border-color rounded-md shadow-lg overflow-hidden bg-window-bg";
+    const base = "border-3 border-window-border-color rounded-md shadow-lg overflow-hidden bg-window-bg h-fit";
     const nodeRef = useRef<HTMLDivElement>(null);
 
     const windowCont = (

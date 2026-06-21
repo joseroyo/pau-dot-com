@@ -36,10 +36,9 @@ export default function Login() {
   }
 
   return (
-    <main className="flex flex-col items-center">
+    <main className="flex flex-col items-center px-5">
       <h1>Log In</h1>
-
-      <Window className="w-[33%]">
+      <Window className="max-w-[558px] w-[100%]">
         <form onSubmit={handleSubmit}>
           <label className="flex flex-col">
             Email:

@@ -15,7 +15,7 @@ export default function Navigation() {
   }
 
   return (
-    <nav className="px-5 py-2 mb-5 flex justify-between border-b-5 border-t-5 border-window-border-color bg-window-dotted bg-size-[5px_5px]">
+    <nav className="px-5 py-2 mb-5 flex justify-center flex-wrap border-b-5 border-t-5 border-window-border-color bg-window-dotted bg-size-[5px_5px] lg:justify-between lg:flex-nowrap">
       <Link href="/" className="font-bold text-[16px] px-[12px] pb-[2px] bg-window-bg border-1 rounded-[2px]">Home</Link>
       <Link href="/about-me" className="font-bold text-[16px] px-[12px] pb-[2px] bg-window-bg border-1 rounded-[2px]">About Me</Link>
       {/*<Link href="/cv" className="font-bold text-[16px] px-[12px] pb-[2px] bg-window-bg border-1 rounded-[2px]">Resume</Link>
