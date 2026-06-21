@@ -53,24 +53,27 @@ export default function ReviewCard({ id, title, artist, date, rating, review, im
 
   return (
     <article className="flex gap-4 relative">
-      <img src={getItunesArtwork(imageUrl, 600)} alt={`${imageUrl} cover`} className="w-[auto] h-[100px] absolute sm:w-[200px] sm:h-[100%] sm:relative md:w-[auto] md:h-[100px] md:absolute lg:w-[150px] lg:h-[100%] lg:relative xl:w-[200px]" width={200} height={200} />
+      <img src={getItunesArtwork(imageUrl, 600)} alt={`${imageUrl} cover big card`} className="hidden w-[200px] h-[100%] sm:block md:hidden lg:w-[150px] lg:block xl:w-[200px]" width={200} height={200} />
       <div className="w-[100%]">
         {onUpdate && !isEditing && (
           <button type="button" onClick={() => setIsEditing(true)} className="absolute right-0 bottom-[-5px] text-primary hover:underline">Edit</button>
         )}
-        <div className="pl-[115px] sm:pl-0 md:pl-[115px] lg:pl-0">
-          <h3 className="line-clamp-2">{title}</h3>
-          <p>{artist}</p>
-          <p>Date logged: {date}</p>
-          {isEditing ? (
-            <div>
-              <StarRating value={editedRating} onChange={setEditedRating} />
-            </div>
-          ) : (
-            <StarDisplay value={rating} />
-          )}
+        <div className="flex">
+          <img src={getItunesArtwork(imageUrl, 600)} alt={`${imageUrl} cover small card`} className="w-[100px] h-[100%] mr-4 sm:hidden md:block lg:hidden" width={100} height={100} />
+          <div>
+            <h3 className="line-clamp-2">{title}</h3>
+            <p>{artist}</p>
+            <p>Date logged: {date}</p>
+            {isEditing ? (
+              <div>
+                <StarRating value={editedRating} onChange={setEditedRating} />
+              </div>
+            ) : (
+              <StarDisplay value={rating} />
+            )}
+          </div>
         </div>
-        <div className="mt-[5px] sm:mt-0 md:mt-[5px] lg:mt-0">
+        <div className="mt-[10px] sm:mt-0 md:mt-[10px] lg:mt-0">
           {isEditing ? (
             <div className="flex flex-col mt-1">
               <textarea
