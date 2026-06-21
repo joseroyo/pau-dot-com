@@ -139,9 +139,9 @@ export default function Books() {
       )}
       <section className="flex flex-wrap justify-between mt-8 w-[100%] 2xl:container">
         {isLoading ? (
-          <p>Loading reviews...</p>
+          <p className="my-0 mx-[auto]">Loading reviews...</p>
         ) : reviews.length === 0 ? (
-          <p>No reviews yet. Add one above!</p>
+          <h2 className="my-0 mx-[auto]">No reviews yet.</h2>
         ) : (
           reviews.map((r) => (
             <Window className="mb-5 w-[100%] md:w-[49%]" key={r.id}>
