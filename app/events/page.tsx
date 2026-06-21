@@ -124,7 +124,7 @@ export default function EventRating() {
         </Window>
       )}
 
-      <section className="flex flex-wrap justify-between mt-8 w-[100%] 2xl:container">
+      <section className="flex flex-wrap justify-between lg:mt-8 w-[100%] 2xl:container">
         {isLoading ? (
           <p className="mx-[auto] my-0">Loading...</p>
         ) : lifeEvents.length === 0 ? (

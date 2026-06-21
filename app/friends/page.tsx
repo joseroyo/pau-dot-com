@@ -120,7 +120,7 @@ export default function FriendRating() {
         </Window>
       )}
 
-      <section className="flex flex-wrap justify-between mt-8 w-[100%] 2xl:container">
+      <section className="flex flex-wrap justify-between lg:mt-8 w-[100%] 2xl:container">
         {isLoading ? (
           <p className="mx-[auto] my-0">Loading...</p>
         ) : friends.length === 0 ? (

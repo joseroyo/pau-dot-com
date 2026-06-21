@@ -95,17 +95,17 @@ export default function AboutMe() {
   }
 
   return (
-    <main className="px-5 container mx-auto flex flex-col items-center">
+    <main className="px-5 mx-auto flex flex-col items-center w-[100%] 2xl:container">
       <BackgroundMusic pageKey="about-me" />
       <h1>About Me!</h1>
 
       {!isAuthLoading && user && (
-        <Window title="Add a Post!" className="w-[50%]">
+        <Window title="Add a Post!" className="max-w-[748px] w-[100%]">
           <BlogForm onAddBlog={addBlog} />
         </Window>
       )}
 
-      <section className="flex flex-wrap justify-between container mt-8">
+      <section className="flex flex-wrap justify-between lg:mt-8 w-[100%] 2xl:container">
         {isLoading ? (
           <p className="mx-[auto] my-0">Loading...</p>
         ) : Blogs.length === 0 ? (

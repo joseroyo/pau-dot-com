@@ -53,7 +53,7 @@ export default function ReviewCard({ id, title, artist, date, rating, review, im
 
   return (
     <article className="flex gap-4 relative">
-      <img src={getItunesArtwork(imageUrl, 600)} alt={`${imageUrl} cover`} className="w-[100px] h-[auto] absolute sm:w-[200px] sm:h-[100%] sm:relative md:w-[100px] md:h-[auto] md:absolute lg:w-[150px] lg:h-[100%] lg:relative xl:w-[200px]" width={200} height={200} />
+      <img src={getItunesArtwork(imageUrl, 600)} alt={`${imageUrl} cover`} className="w-[auto] h-[100px] absolute sm:w-[200px] sm:h-[100%] sm:relative md:w-[auto] md:h-[100px] md:absolute lg:w-[150px] lg:h-[100%] lg:relative xl:w-[200px]" width={200} height={200} />
       <div className="w-[100%]">
         {onUpdate && (
           <button type="button" onClick={() => setIsEditing(true)} className="absolute right-0 text-primary hover:underline">Edit</button>
