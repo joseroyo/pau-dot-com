@@ -47,7 +47,7 @@ export default function ReviewForm({ search, searchPlaceholder, onAddReview }: R
 
   return (
     <form className="flex flex-col justify-center" onSubmit={handleSubmit}>
-      <section className="flex gap-5">
+      <section className="flex gap-5 flex-col sm:flex-row">
         {selectedItem ? (
           <div>
             <img src={selectedItem.imageUrl} alt="" width={60} height={60} />
@@ -64,7 +64,7 @@ export default function ReviewForm({ search, searchPlaceholder, onAddReview }: R
           />
         )}
 
-        <section className="flex flex-col w-[50%]">
+        <section className="flex flex-col w-[100%] sm:w-[50%]">
           <input
               type="date"
               value={date}

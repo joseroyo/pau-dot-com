@@ -110,7 +110,7 @@ export default function FriendRating() {
   }
 
   return (
-    <main className="px-5 container mx-auto flex flex-col items-center">
+    <main className="px-5 mx-auto flex flex-col items-center w-[100%] 2xl:container">
       <BackgroundMusic pageKey="friends" />
       <h1>Friend Ratings</h1>
 
@@ -120,14 +120,14 @@ export default function FriendRating() {
         </Window>
       )}
 
-      <section className="flex flex-wrap justify-between container mt-8">
+      <section className="flex flex-wrap justify-between mt-8 w-[100%] 2xl:container">
         {isLoading ? (
           <p className="mx-[auto] my-0">Loading...</p>
         ) : friends.length === 0 ? (
           <h2 className="mx-[auto] my-0">No friends rated yet.</h2>
         ) : (
           friends.map((f) => (
-            <Window className="mb-5 w-[49%]" key={f.id}>
+            <Window className="mb-5 w-[100%] md:w-[49%]" key={f.id}>
               <FriendCard
                 id={f.id}
                 name={f.name}

@@ -116,7 +116,7 @@ export default function BackgroundMusic({ pageKey }: BackgroundMusicProps) {
   }
 
   return (
-    <div className="fixed bottom-4 right-4 flex gap-2 items-center">
+    <div className="fixed bottom-4 right-4 flex gap-2 items-center z-10">
       {audioUrl && (
         <>
           <audio

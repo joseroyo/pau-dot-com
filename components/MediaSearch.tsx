@@ -37,7 +37,7 @@ export default function MediaSearch({ search, placeholder = "Search...", onSelec
   }, [query, search]);
 
   return (
-    <div className="w-[50%]">
+    <div className="w-[100%] sm:w-[50%]">
       <input
         type="text"
         value={query}

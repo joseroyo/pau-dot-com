@@ -53,21 +53,23 @@ export default function ReviewCard({ id, title, artist, date, rating, review, im
 
   return (
     <article className="flex gap-4 relative">
-      <img src={getItunesArtwork(imageUrl, 600)} alt={`${imageUrl} cover`} className="h-[100%]" width={200} height={200} />
+      <img src={getItunesArtwork(imageUrl, 600)} alt={`${imageUrl} cover`} className="h-[100%] md:w-[100px] lg:w-[150px] xl:w-[200px]" width={200} height={200} />
       <div className="w-[100%]">
         {onUpdate && (
-          <button type="button" onClick={() => setIsEditing(true)} className="absolute right-0 text-primary hover:underline">Edit review</button>
+          <button type="button" onClick={() => setIsEditing(true)} className="absolute right-0 text-primary hover:underline">Edit</button>
         )}
-        <h3 className="w-[75%]">{title}</h3>
-        <p>{artist}</p>
-        <p>Date logged: {date}</p>
-        {isEditing ? (
-          <div>
-            <StarRating value={editedRating} onChange={setEditedRating} />
-          </div>
-        ) : (
-          <StarDisplay value={rating} />
-        )}
+        <div>
+          <h3 className="w-[75%]">{title}</h3>
+          <p>{artist}</p>
+          <p>Date logged: {date}</p>
+          {isEditing ? (
+            <div>
+              <StarRating value={editedRating} onChange={setEditedRating} />
+            </div>
+          ) : (
+            <StarDisplay value={rating} />
+          )}
+        </div>
         {isEditing ? (
           <div className="flex flex-col mt-1">
             <textarea

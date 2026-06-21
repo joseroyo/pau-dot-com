@@ -114,7 +114,7 @@ export default function EventRating() {
   }
 
   return (
-    <main className="px-5 container mx-auto flex flex-col items-center">
+    <main className="px-5 mx-auto flex flex-col items-center w-[100%] 2xl:container">
       <BackgroundMusic pageKey="events" />
       <h1>Life Events</h1>
 
@@ -124,14 +124,14 @@ export default function EventRating() {
         </Window>
       )}
 
-      <section className="flex flex-wrap justify-between container mt-8">
+      <section className="flex flex-wrap justify-between mt-8 w-[100%] 2xl:container">
         {isLoading ? (
           <p className="mx-[auto] my-0">Loading...</p>
         ) : lifeEvents.length === 0 ? (
           <h2 className="mx-[auto] my-0">No life events logged yet.</h2>
         ) : (
           lifeEvents.map((f) => (
-            <Window className="mb-5 w-[49%]" key={f.id}>
+            <Window className="mb-5 w-[100%] md:w-[49%]" key={f.id}>
               <EventCard
                 id={f.id}
                 lifeEvent={f.lifeEvent}
