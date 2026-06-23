@@ -125,7 +125,7 @@ export default function Search() {
               <EventCard
                 id={result.data.id}
                 lifeEvent={result.data.life_event}
-                date={result.data.date}
+                date={result.data.date_logged}
                 rating={result.data.rating}
                 description={result.data.description}
                 photoUrl={result.data.photo}
