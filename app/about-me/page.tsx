@@ -63,15 +63,20 @@ export default function AboutMe() {
       return;
     }
 
+    await supabase
+      .from("about_me")
+      .update({ position_x: 0, position_y: 0 })
+      .neq("id", inserted.id);
+
     const newBlogCard: BlogType = {
       id: inserted.id,
       title: inserted.title,
       text: inserted.text,
-      positionX: inserted.position_x,
-      positionY: inserted.position_y,
+      positionX: 0,
+      positionY: 0,
     };
 
-    setBlogs([newBlogCard, ...Blogs]);
+    setBlogs([newBlogCard, ...Blogs.map((f) => ({ ...f, positionX: 0, positionY: 0 }))]);
   }
 
   async function deleteBlog(id: number) {
