@@ -8,6 +8,7 @@ import FriendCard from "@/components/FriendCard";
 import Window from "@/components/Window";
 import BackgroundMusic from "@/components/BackgroundMusic";
 import Pagination from "@/components/Pagination";
+import StarRating from "@/components/StarRating";
 
 type SearchResult = { type: "review"; data: any; mediaType: string } | { type: "friend"; data: any } | { type: "event"; data: any };
 
@@ -18,9 +19,10 @@ export default function Search() {
   const [results, setResults] = useState<SearchResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [rating, setRating] = useState(0);
 
   useEffect(() => {
-    if (query.trim() === "") {
+    if (query.trim() === "" && rating === 0) {
       setResults([]);
       return;
     }
@@ -28,22 +30,26 @@ export default function Search() {
     const timeoutId = setTimeout(async () => {
       setIsLoading(true);
 
+      let reviewsQuery = supabase.from("reviews").select("*").limit(6);
+      let friendsQuery = supabase.from("friends").select("*").limit(6);
+      let eventsQuery = supabase.from("life_events").select("*").limit(6);
+
+      if (query.trim()) {
+        reviewsQuery = reviewsQuery.or(`title.ilike.%${query}%,artist.ilike.%${query}%`);
+        friendsQuery = friendsQuery.ilike("name", `%${query}%`);
+        eventsQuery = eventsQuery.ilike("life_event", `%${query}%`);
+      }
+
+      if (rating > 0) {
+        reviewsQuery = reviewsQuery.eq("rating", rating);
+        friendsQuery = friendsQuery.eq("rating", rating);
+        eventsQuery = eventsQuery.eq("rating", rating);
+      }
+
       const [reviewsRes, friendsRes, lifeEventRes] = await Promise.all([
-        supabase
-          .from("reviews")
-          .select("*")
-          .or(`title.ilike.%${query}%,artist.ilike.%${query}%`)
-          .limit(6),
-        supabase
-          .from("friends")
-          .select("*")
-          .ilike("name", `%${query}%`)
-          .limit(6),
-        supabase
-          .from("life_events")
-          .select("*")
-          .ilike("life_event", `%${query}%`)
-          .limit(6),
+        reviewsQuery,
+        friendsQuery,
+        eventsQuery,
       ]);
 
       const reviews: SearchResult[] = (reviewsRes.data || []).map((r) => ({
@@ -67,7 +73,7 @@ export default function Search() {
     }, 400);
 
     return () => clearTimeout(timeoutId);
-  }, [query]);
+  }, [query, rating]);
 
     useEffect(() => {
       setCurrentPage(1);
@@ -91,6 +97,10 @@ export default function Search() {
             placeholder="..."
             className="w-[100%]"
         />
+        <div className="flex items-center gap-4 mt-1">
+          <StarRating value={rating} onChange={setRating} />
+          <button type="button" onClick={() => setRating(0)}>x</button>
+        </div>
       </Window>
       {isLoading && <p>Searching...</p>}
       {!isLoading && query && results.length === 0 && (
