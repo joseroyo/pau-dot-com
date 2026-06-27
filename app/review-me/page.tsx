@@ -59,6 +59,7 @@ export default function ReviewMe() {
       <h1>Review Me</h1>
       <div ref={windowRef} className={`max-w-[600px] w-full ${isAnimating ? "animate-pop" : ""}`}>
           <Window title="Review Me!" className="w-[100%]">
+            <button type="button" className="absolute right-[-11px] top-[-51px] border-0 px-4 py-2 cursor-pointer" onClick={handleReset}>x</button>
             <div className="flex flex-col items-center gap-4">
             {!hasSubmitted ? (
                 <form onSubmit={handleSubmit} className="flex flex-col gap-3 w-full">
