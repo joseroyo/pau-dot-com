@@ -50,7 +50,7 @@ export default function Window({ title, children, onClose, className="", draggab
                     <WindowButton label="close" symbol="✕" onClick={onClose} />
                 </div>
             </div>
-            <div className="m-[6px] p-[12px] border-2 border-window-border-color shadow-inner-soft">
+            <div className="m-[6px] p-[12px] border-2 border-window-border-color shadow-inner-soft relative">
                 {children}
             </div>
         </div>

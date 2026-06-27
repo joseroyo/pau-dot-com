@@ -4,6 +4,7 @@ import { getItunesArtwork } from "@/lib/itunes";
 import { useState } from "react";
 import StarRating from "./StarRating";
 import StarDisplay from "./StarDisplay";
+import Comments from "./Comments";
 
 type ReviewCardProps = {
   id: number;
@@ -52,6 +53,7 @@ export default function ReviewCard({ id, title, artist, date, rating, review, im
   }
 
   return (
+    <>
     <article className="flex gap-4 relative">
       <img src={getItunesArtwork(imageUrl, 600)} alt={`${imageUrl} cover big card`} className="hidden w-[200px] h-[100%] sm:block md:hidden lg:w-[150px] lg:block xl:w-[200px]" width={200} height={200} loading="lazy" />
       <div className="w-[100%]">
@@ -103,5 +105,7 @@ export default function ReviewCard({ id, title, artist, date, rating, review, im
         <button type="button" className="absolute right-[-23px] top-[-59px] border-0 px-4 py-2 cursor-pointer" onClick={handleDelete}>x</button>
       )}
     </article>
+    <Comments parentType="reviews" parentId={id} />
+    </>
   );
 }

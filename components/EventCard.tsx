@@ -3,6 +3,7 @@
 import { useState } from "react";
 import StarRating from "./StarRating";
 import StarDisplay from "./StarDisplay";
+import Comments from "./Comments";
 
 type EventCardProps = {
   id: number;
@@ -50,6 +51,7 @@ export default function EventCard({ id, lifeEvent, date, rating, description, ph
   }
 
   return (
+    <>
     <article className="flex gap-4 relative">
       {photoUrl && (
         <img src={photoUrl} alt={`${lifeEvent} photo big card`} className="hidden w-[200px] h-[100%] sm:block md:hidden lg:w-[150px] lg:block xl:w-[200px]" width={200} height={200} loading="lazy" />
@@ -102,5 +104,7 @@ export default function EventCard({ id, lifeEvent, date, rating, description, ph
         <button type="button" className="absolute right-[-23px] top-[-59px] border-0 px-4 py-2 cursor-pointer" onClick={handleDelete}>x</button>
       )}
     </article>
+    <Comments parentType="life_events" parentId={id} />
+    </>
   );
 }
