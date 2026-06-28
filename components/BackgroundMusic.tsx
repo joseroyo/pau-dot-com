@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { supabase } from "@/lib/supabase";
 import { useAuth } from "./AuthProvider";
 import Button from "./Button";
+import { compressAudio } from "@/lib/utils";
 
 type BackgroundMusicProps = {
   pageKey: string;
@@ -79,11 +80,12 @@ export default function BackgroundMusic({ pageKey }: BackgroundMusicProps) {
     setIsUploading(true);
 
     const ext = file.name.split(".").pop();
+    const compressed = await compressAudio(file, 96);
     const filename = `${pageKey}-${Date.now()}.${ext}`;
 
     const { error: uploadError } = await supabase.storage
       .from("music")
-      .upload(filename, file);
+      .upload(filename, compressed);
 
     if (uploadError) {
       console.error("Upload failed:", uploadError.message);
